@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The cards API is served over plain HTTP (not HTTPS). Since Android 9 (API 28) cleartext
+    (non-encrypted) traffic is blocked by default for safety. Here we make a narrow exception:
+    we allow cleartext ONLY for the one API server we talk to, and nothing else. This is safer
+    than turning cleartext on for the whole app.
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">49.13.125.189</domain>
+    </domain-config>
+</network-security-config>
