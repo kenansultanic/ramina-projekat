@@ -1,21 +1,21 @@
 [versions]
-agp = "9.2.1"
-coreKtx = "1.10.1"
+agp = "9.1.0"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.28"
+coreKtx = "1.19.0"
+activityCompose = "1.10.1"
+lifecycleRuntimeKtx = "2.9.0"
+lifecycleViewmodelCompose = "2.9.0"
+composeBom = "2025.02.00"
+navigationCompose = "2.8.9"
+retrofit = "2.11.0"
+room = "2.7.1"
+coil = "2.7.0"
+coroutines = "1.9.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-kotlin = "2.2.10"
-composeBom = "2026.02.01"
-# --- Added for the two features (Smart Suggestions + Shake-to-open) ---
-retrofit = "3.0.0"                       # network calls to the cards API
-room = "2.8.4"                           # local database that stores our collection
-ksp = "2.2.10-2.0.2"                     # annotation processor Room needs (must match Kotlin 2.2.10)
-coil = "2.7.0"                           # loads the (large) sticker PNGs with caching
-lifecycleViewmodelCompose = "2.11.0"     # gives us viewModel() inside Compose
-coroutines = "1.11.0"                    # background work for network/database
-navigationCompose = "2.9.8"              # screen-to-screen navigation (Navigation for Compose)
+coreKtxVersion = "1.19.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +45,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 # Material icons (GridView, Casino, BarChart, Favorite, Lightbulb, Settings, Share, ArrowBack).
 # Version comes from the Compose BOM, so no explicit version here.
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -54,3 +55,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 # compiled automatically and applying kotlin-android would conflict. We only need KSP (it runs
 # Room's annotation processor at build time).
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

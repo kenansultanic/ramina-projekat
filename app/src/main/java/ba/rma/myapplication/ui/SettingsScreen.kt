@@ -94,7 +94,7 @@ fun SettingsScreen(
                         selected = viewModel.themeMode == mode,
                         onSelect = {
                             // Persist + update state, then tell MainActivity so the app re-themes live.
-                            viewModel.setThemeMode(mode)
+                            viewModel.updateThemeMode(mode)
                             onThemeChanged(mode)
                         }
                     )
@@ -108,7 +108,7 @@ fun SettingsScreen(
                     RadioRow(
                         text = sortLabel(order),
                         selected = viewModel.sortOrder == order,
-                        onSelect = { viewModel.setSortOrder(order) }
+                        onSelect = { viewModel.updateSortOrder(order) }
                     )
                 }
             }
@@ -130,7 +130,7 @@ fun SettingsScreen(
                             DropdownMenuItem(
                                 text = { Text(densityLabel(density)) },
                                 onClick = {
-                                    viewModel.setGridDensity(density)
+                                    viewModel.updateGridDensity(density)
                                     expanded = false
                                 }
                             )
@@ -152,7 +152,7 @@ fun SettingsScreen(
                     )
                     Switch(
                         checked = viewModel.showOnlyOwned,
-                        onCheckedChange = { viewModel.setShowOnlyOwned(it) }
+                        onCheckedChange = { viewModel.updateShowOnlyOwned(it) }
                     )
                 }
             }

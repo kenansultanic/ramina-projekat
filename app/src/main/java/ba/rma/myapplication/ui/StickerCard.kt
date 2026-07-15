@@ -65,10 +65,8 @@ fun StickerCard(card: CardUi, modifier: Modifier = Modifier) {
                     .background(MaterialTheme.colorScheme.surfaceVariant)
             ) {
                 AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(API_BASE_URL + card.imagePath) // e.g. http://...:3300/api/slicica/3
-                        .crossfade(true)
-                        .build(),
+                    model = API_BASE_URL + card.imagePath,
+
                     contentDescription = card.firstName + " " + card.lastName,
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.fillMaxSize()

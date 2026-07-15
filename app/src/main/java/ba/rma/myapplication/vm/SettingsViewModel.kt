@@ -47,7 +47,7 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     /** Persist + update the grid density. */
-    fun setGridDensity(value: GridDensity) {
+    fun updateGridDensity(value: GridDensity) {
         settings.gridDensity = value
         gridDensity = value
     }
