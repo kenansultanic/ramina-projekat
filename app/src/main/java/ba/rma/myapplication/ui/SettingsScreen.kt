@@ -1,7 +1,6 @@
 package ba.rma.myapplication.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,30 +13,20 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Card
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import ba.rma.myapplication.data.GridDensity
-import ba.rma.myapplication.data.SortOrder
 import ba.rma.myapplication.data.ThemeMode
 import ba.rma.myapplication.vm.SettingsViewModel
 
@@ -100,62 +89,6 @@ fun SettingsScreen(
                     )
                 }
             }
-
-            // ---- DEFAULT SORT ORDER ----
-            SettingsSection(title = "Zadani redoslijed") {
-                // sortLabel() gives us the Bosnian label for each SortOrder.
-                SortOrder.entries.forEach { order ->
-                    RadioRow(
-                        text = sortLabel(order),
-                        selected = viewModel.sortOrder == order,
-                        onSelect = { viewModel.updateSortOrder(order) }
-                    )
-                }
-            }
-
-            // ---- GRID DENSITY (dropdown menu) ----
-            SettingsSection(title = "Gustoća mreže") {
-                // The dropdown opens from a button showing the currently selected density.
-                var expanded by remember { mutableStateOf(false) }
-
-                Box {
-                    OutlinedButton(onClick = { expanded = true }) {
-                        Text(densityLabel(viewModel.gridDensity))
-                    }
-                    DropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
-                    ) {
-                        GridDensity.entries.forEach { density ->
-                            DropdownMenuItem(
-                                text = { Text(densityLabel(density)) },
-                                onClick = {
-                                    viewModel.updateGridDensity(density)
-                                    expanded = false
-                                }
-                            )
-                        }
-                    }
-                }
-            }
-
-            // ---- SHOW ONLY OWNED (switch) ----
-            SettingsSection(title = "Prikaz") {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Prikaži samo skupljene",
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                    Switch(
-                        checked = viewModel.showOnlyOwned,
-                        onCheckedChange = { viewModel.updateShowOnlyOwned(it) }
-                    )
-                }
-            }
         }
     }
 }
@@ -205,13 +138,5 @@ private fun RadioRow(
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.padding(start = 8.dp)
         )
-    }
-}
-
-/** Bosnian label for each grid density option. */
-private fun densityLabel(density: GridDensity): String {
-    return when (density) {
-        GridDensity.COMFORTABLE -> "Prostrano"
-        GridDensity.COMPACT -> "Zbijeno"
     }
 }

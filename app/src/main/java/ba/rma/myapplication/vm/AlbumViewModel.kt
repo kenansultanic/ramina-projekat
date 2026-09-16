@@ -68,7 +68,7 @@ class AlbumViewModel(
     // there is no value already in SavedStateHandle, e.g. fresh launch). On rotation the saved
     // value wins so we don't override the user's in-screen choice.
     private val defaultSortName =
-        (savedState.get<String>(keySort) ?: SettingsManager(app).defaultSort.name)
+        (savedState.get<String>(keySort) ?: SortOrder.NUMBER.name)
 
     // ---- The four filter/sort Flows, each backed by SavedStateHandle ----
     // Search and team are plain Strings. Status and sort are enums stored BY NAME (String).

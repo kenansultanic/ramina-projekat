@@ -5,9 +5,6 @@ import android.content.Context
 /** How the album list is sorted. */
 enum class SortOrder { NUMBER, NAME, ACQUIRED }
 
-/** How tightly cards are packed in the grid. The number is the minimum cell width in dp. */
-enum class GridDensity(val minCellDp: Int) { COMFORTABLE(160), COMPACT(120) }
-
 /** App color theme choice. */
 enum class ThemeMode { LIGHT, DARK, SYSTEM }
 
@@ -37,32 +34,11 @@ class SettingsManager(context: Context) {
             prefs.edit().putString("favorite_team", value).apply()
         }
 
-    /** Default sort order for the album list. */
-    var defaultSort: SortOrder
-        get() = readEnum("default_sort", SortOrder.NUMBER) { SortOrder.valueOf(it) }
-        set(value) {
-            prefs.edit().putString("default_sort", value.name).apply()
-        }
-
-    /** Grid density (how many cards per row, roughly). */
-    var gridDensity: GridDensity
-        get() = readEnum("grid_density", GridDensity.COMFORTABLE) { GridDensity.valueOf(it) }
-        set(value) {
-            prefs.edit().putString("grid_density", value.name).apply()
-        }
-
     /** Light / dark / follow-system theme. */
     var themeMode: ThemeMode
         get() = readEnum("theme_mode", ThemeMode.SYSTEM) { ThemeMode.valueOf(it) }
         set(value) {
             prefs.edit().putString("theme_mode", value.name).apply()
-        }
-
-    /** If true, the album hides missing stickers by default. */
-    var showOnlyOwned: Boolean
-        get() = prefs.getBoolean("show_only_owned", false)
-        set(value) {
-            prefs.edit().putBoolean("show_only_owned", value).apply()
         }
 
     /**

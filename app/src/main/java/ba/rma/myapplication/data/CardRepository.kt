@@ -86,11 +86,6 @@ class CardRepository(private val dao: CollectionDao) {
         }
     }
 
-    /** True if we have already cached the catalog at least once. */
-    suspend fun hasCatalog(): Boolean {
-        return dao.catalogCount() > 0
-    }
-
     // ---------------- WRITES (network -> Room) ----------------
 
     /**

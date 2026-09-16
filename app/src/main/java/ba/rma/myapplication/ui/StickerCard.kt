@@ -1,5 +1,6 @@
 package ba.rma.myapplication.ui
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -46,7 +47,7 @@ fun StickerCard(card: CardUi, modifier: Modifier = Modifier) {
 
     // Missing stickers are shown faded so the album clearly shows what is still to collect.
     val contentAlpha = if (card.ownedCount == 0) 0.4f else 1f
-
+    println("URL SLICICE: " + API_BASE_URL + card.imagePath)
     Card(
         modifier = modifier
             .fillMaxWidth()

@@ -22,13 +22,4 @@ object RetrofitClient {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(ApiService::class.java)
-
-    /**
-     * Builds a full image URL from a player's `slicicaLokacija` (e.g. "/api/slicica/1").
-     * The path already starts with a slash, so we drop the trailing slash from BASE_URL to avoid
-     * a double slash ("...3300//api/..."). Coil uses the returned URL to download the picture.
-     */
-    fun imageUrl(slicicaLokacija: String): String {
-        return BASE_URL.dropLast(1) + slicicaLokacija
-    }
 }
